@@ -7,8 +7,9 @@
 // https://quasar.dev/quasar-cli/quasar-conf-js
 /* eslint-env node */
 const { configure } = require('quasar/wrappers');
+const webpack = require('webpack');
 
-module.exports = configure(function (/* ctx */) {
+module.exports = configure(function (ctx) {
   return {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
@@ -94,7 +95,13 @@ module.exports = configure(function (/* ctx */) {
               vm: require.resolve('vm-browserify')
             }
           }
-        })
+        });
+
+        // Define process variables for browser environment
+        chain.plugin('define-process-env').use(webpack.DefinePlugin, [{
+          'process.env.NODE_ENV': JSON.stringify(ctx.dev ? 'development' : 'production'),
+          'process.browser': true,
+        }]);
       }
     },
 
