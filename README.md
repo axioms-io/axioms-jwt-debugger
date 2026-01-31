@@ -1,4 +1,4 @@
-# Axioms JWT Debugger
+# Axioms JWT Debugger is now replaced by [JWT Debugger](https://github.com/abhishektiwari/jwt-debugger)
 Parse and validate a JSON Web Token (JWT).
 
 - Web version with offline support using progress web app 
